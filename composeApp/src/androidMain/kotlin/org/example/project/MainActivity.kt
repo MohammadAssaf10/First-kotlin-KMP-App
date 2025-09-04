@@ -59,8 +59,8 @@ class MainActivity : ComponentActivity() {
                 Spacer(modifier = Modifier.width(10.dp))
                 ImageCard(
                     painter = painter1,
-                    contentDescription = "Hello World!",
-                    title = "Hello World!",
+                    contentDescription = "Hitman",
+                    title = "Hitman",
                     modifier = Modifier
                         .fillMaxHeight()
                         .weight(1f)
