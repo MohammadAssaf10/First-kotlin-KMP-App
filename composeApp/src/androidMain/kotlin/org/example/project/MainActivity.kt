@@ -7,14 +7,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -26,51 +21,83 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import learn_app.composeapp.generated.resources.Res
-import learn_app.composeapp.generated.resources.image
-import learn_app.composeapp.generated.resources.photo
-import org.jetbrains.compose.resources.painterResource
+import learn_app.composeapp.generated.resources.lexend_bold
+import learn_app.composeapp.generated.resources.lexend_extra_bold
+import learn_app.composeapp.generated.resources.lexend_extra_light
+import learn_app.composeapp.generated.resources.lexend_light
+import learn_app.composeapp.generated.resources.lexend_medium
+import learn_app.composeapp.generated.resources.lexend_regular
+import learn_app.composeapp.generated.resources.lexend_semi_bold
+import learn_app.composeapp.generated.resources.lexend_thin
+import org.jetbrains.compose.resources.Font
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
-        setContent {
-            val painter = painterResource(Res.drawable.image)
-            val painter1 = painterResource(Res.drawable.photo)
 
-            Row(
+        setContent {
+            val fontFamily = FontFamily(
+                Font( Res.font.lexend_bold, weight = FontWeight.Bold),
+                Font(Res.font.lexend_extra_bold, weight = FontWeight.ExtraBold),
+                Font(Res.font.lexend_extra_light, weight = FontWeight.ExtraLight),
+                Font(Res.font.lexend_light, weight = FontWeight.Light),
+                Font(Res.font.lexend_medium, weight = FontWeight.Medium),
+                Font(Res.font.lexend_regular, weight = FontWeight.Normal),
+                Font(Res.font.lexend_semi_bold, weight = FontWeight.SemiBold),
+                Font(Res.font.lexend_thin, weight = FontWeight.Thin),
+            )
+            Box(
                 modifier = Modifier
-                    .padding(vertical = 30.dp, horizontal = 10.dp)
-                    .fillMaxWidth()
-                    .height(200.dp)
+                    .fillMaxSize()
+                    .padding(top = 40.dp)
+                    .background(Color(0xFF101010))
             ) {
-                ImageCard(
-                    painter = painter,
-                    contentDescription = "Hello World!",
-                    title = "Hello World!",
-                    modifier = Modifier
-                        .fillMaxHeight()
-                        .weight(1f)
-                )
-                Spacer(modifier = Modifier.width(10.dp))
-                ImageCard(
-                    painter = painter1,
-                    contentDescription = "Hitman",
-                    title = "Hitman",
-                    modifier = Modifier
-                        .fillMaxHeight()
-                        .weight(1f)
+                Text(
+                    text= buildAnnotatedString {
+                        withStyle(
+                            style = SpanStyle(
+                                color = Color.Green,
+                                fontSize = 50.sp
+                            )
+                        ){
+                            append("H")
+                        }
+                        append("ello ")
+                        withStyle(
+                            style = SpanStyle(
+                                color = Color.Green,
+                                fontSize = 50.sp
+                            )
+                        ){
+                            append("W")
+                        }
+                        append("orld!")
+                    },
+                    color = Color.White,
+                    fontSize = 30.sp,
+                    fontFamily = fontFamily,
+                    fontWeight = FontWeight.Bold,
+                    fontStyle = FontStyle.Italic,
+                    textAlign = TextAlign.Center,
                 )
             }
-
-
         }
     }
 }
+
 
 @Composable
 fun ImageCard(
